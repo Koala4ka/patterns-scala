@@ -1,18 +1,18 @@
 package db
 
 import commands.MessageCommand
-import reciver.Message
+import model.{Message, Sender}
+import observer.Observable
 
 import scala.collection.mutable.ListBuffer
 
-class ChatDB {
+case class ChatDB(sender: Sender, text: String) extends Observable[ChatDB] {
 
-//  val chat = ListBuffer[Message]()
-//
-//  def sendMessages(message: Message): Unit = {
-//    message +=: chat
-//  }
-
+  val messages = ListBuffer[Message]()
+  def addMessage(message: Message): Unit = {
+    messages.+=:(message)
+    notifyObservers()
+  }
   val comands = ListBuffer[MessageCommand]()
 
   def issueCommand(command: MessageCommand): Unit = {
@@ -24,5 +24,3 @@ class ChatDB {
     comands.foreach(println)
   }
 }
-
-

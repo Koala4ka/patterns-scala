@@ -1,11 +1,11 @@
 package model
 
-import db.Chat
+import db.ChatDB
 import observer.Observer
 
-case class Sender(name: String) extends Observer[Chat] {
+case class Sender(name: String) extends Observer[ChatDB] {
 
-  override def handleUpdate(chat: Chat): Unit = {
+  override def handleUpdate(chat: ChatDB): Unit = {
     System.out.println(s"Hey, I'm ${name}. I send in chat a new message:)${chat.messages}")
   }
 }

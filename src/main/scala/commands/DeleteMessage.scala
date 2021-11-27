@@ -1,6 +1,6 @@
 package commands
 
-import reciver.Message
+import model.Message
 
 case class DeleteMessage (message: Message) extends MessageCommand {
 
